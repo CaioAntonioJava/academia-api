@@ -13,14 +13,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "avaliacoes")
+@Table(name = "tb_avaliacoes")
 public class AvaliacaoFisica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "aluno", nullable = false)
+
     @ManyToOne(cascade =  CascadeType.ALL)
     @JoinColumn(name = "aluno_id")
     private Aluno aluno;

@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "alunos")
+@Table(name = "tb_alunos")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Aluno {
 
@@ -34,7 +34,7 @@ public class Aluno {
   @Column(name = "data_nascimento", nullable = false)
   private LocalDate dataDeNascimento;
 
-  @Column(name = "avaliacao_fisica", nullable = false)
+
   @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY)
   @JsonIgnore
   private List<AvaliacaoFisica> avaliacoes = new ArrayList<>();
