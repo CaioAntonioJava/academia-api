@@ -25,13 +25,13 @@ public class AvaliacaoFisica {
     @JoinColumn(name = "aluno_id")
     private Aluno aluno;
 
-    @Column(name = "data_avaliacao", nullable = false)
+    @Column(name = "data_avaliacao")
     private LocalDateTime dataDaAvaliacao = LocalDateTime.now();
 
-    @Column(name = "peso_atual", nullable = false)
+    @Column(name = "peso_atual")
     private double peso;
 
-    @Column(name = "altura_atual", nullable = false)
+    @Column(name = "altura_atual")
     private double altura;
 
 }
