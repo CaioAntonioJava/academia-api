@@ -23,4 +23,10 @@ public class AlunoController {
 
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Aluno> getById(@PathVariable Long id) {
+         Aluno aluno=  alunoService.findById(id);
+        return ResponseEntity.ok().body(aluno);
+    }
+
 }
