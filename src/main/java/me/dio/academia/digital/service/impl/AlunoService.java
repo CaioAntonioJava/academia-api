@@ -7,6 +7,7 @@ import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -31,5 +32,25 @@ public class AlunoService {
     @ReadOnlyProperty
     public List<Aluno> findAll() {
         return alunoRepository.findAll();
+    }
+
+    @Transactional
+    public Aluno updateDadosAluno(Long id, String nome, String bairro, LocalDate dataNascimento) {
+        Aluno update = findById(id);
+        update.setNome(nome);
+        update.setBairro(bairro);
+        update.setDataDeNascimento(dataNascimento);
+        return alunoRepository.save(update);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        findById(id);
+        try {
+            alunoRepository.deleteById(id);
+
+        } catch (Exception exception) {
+            throw new RuntimeException("Há entidades relacionadas ao aluno");
+        }
     }
 }

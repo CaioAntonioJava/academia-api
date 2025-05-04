@@ -1,9 +1,11 @@
 package me.dio.academia.digital.web.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import me.dio.academia.digital.entity.Aluno;
 import me.dio.academia.digital.service.impl.AlunoService;
 import me.dio.academia.digital.web.dto.AlunoForm;
+import me.dio.academia.digital.web.dto.AlunoUpdateForm;
 import me.dio.academia.digital.web.dto.mapper.AlunoMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,5 +38,19 @@ public class AlunoController {
         List<Aluno> alunoList = alunoService.findAll();
         return ResponseEntity.ok().body(alunoList);
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Aluno> updateAluno(@PathVariable Long id, @RequestBody AlunoUpdateForm alunoUpdateForm) {
+        Aluno updateObj = alunoService.updateDadosAluno
+                (id, alunoUpdateForm.getNome(), alunoUpdateForm.getBairro(), alunoUpdateForm.getDataDeNascimento());
+        return ResponseEntity.ok().body(updateObj);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        alunoService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 }
