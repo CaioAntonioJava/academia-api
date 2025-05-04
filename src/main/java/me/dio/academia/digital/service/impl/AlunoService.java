@@ -7,6 +7,7 @@ import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -15,7 +16,7 @@ public class AlunoService {
 
     @Transactional
     public Aluno create(Aluno aluno) {
-       return alunoRepository.save(aluno);
+        return alunoRepository.save(aluno);
     }
 
     @ReadOnlyProperty
@@ -25,5 +26,10 @@ public class AlunoService {
                         ALUNO NÃO ENCONTRADO
                         """))
         );
+    }
+
+    @ReadOnlyProperty
+    public List<Aluno> findAll() {
+        return alunoRepository.findAll();
     }
 }
