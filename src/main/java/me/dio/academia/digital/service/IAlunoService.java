@@ -1,8 +1,8 @@
 package me.dio.academia.digital.service;
 
 import me.dio.academia.digital.entity.Aluno;
-import me.dio.academia.digital.entity.form.AlunoForm;
-import me.dio.academia.digital.entity.form.AlunoUpdateForm;
+import me.dio.academia.digital.web.dto.AlunoForm;
+import me.dio.academia.digital.web.dto.AlunoUpdateForm;
 
 import java.util.List;
 
