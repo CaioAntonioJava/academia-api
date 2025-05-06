@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/avaliacoes")
 @RequiredArgsConstructor
@@ -18,6 +20,18 @@ public class AvaliacaoFisicaController {
     public ResponseEntity<AvaliacaoFisica> create(@RequestBody AvaliacaoFisicaForm avaliacaoFisicaForm) {
        AvaliacaoFisica avaliacaoFisica =  avaliacaoFisicaService.create(avaliacaoFisicaForm);
         return ResponseEntity.status(HttpStatus.CREATED).body(avaliacaoFisica);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AvaliacaoFisica> findById(@PathVariable Long id) {
+        AvaliacaoFisica avaliacaoFisica = avaliacaoFisicaService.getById(id);
+        return ResponseEntity.ok().body(avaliacaoFisica);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<AvaliacaoFisica>> findAll() {
+        List<AvaliacaoFisica> avaliacaoFisicaList = avaliacaoFisicaService.findAll();
+        return ResponseEntity.ok().body(avaliacaoFisicaList);
     }
 
 
