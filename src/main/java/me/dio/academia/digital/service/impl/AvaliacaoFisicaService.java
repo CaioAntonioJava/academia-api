@@ -45,4 +45,12 @@ public class AvaliacaoFisicaService {
     public List<AvaliacaoFisica> findAll() {
         return avaliacaoFisicaRepository.findAll();
     }
+
+    @Transactional
+    public AvaliacaoFisica update(Long id, double peso, double altura) {
+        AvaliacaoFisica avaliacaoFisica = getById(id);
+        avaliacaoFisica.setPeso(peso);
+        avaliacaoFisica.setAltura(altura);
+        return avaliacaoFisicaRepository.save(avaliacaoFisica);
+    }
 }
