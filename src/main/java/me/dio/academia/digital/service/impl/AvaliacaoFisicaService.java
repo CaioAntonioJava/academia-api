@@ -53,4 +53,14 @@ public class AvaliacaoFisicaService {
         avaliacaoFisica.setAltura(altura);
         return avaliacaoFisicaRepository.save(avaliacaoFisica);
     }
+
+    @Transactional
+    public void delete(Long id) {
+        getById(id);
+        try {
+            avaliacaoFisicaRepository.deleteById(id);
+        }catch (Exception exception) {
+            throw new RuntimeException("Não foi possível excluir a avaliação física");
+        };
+    }
 }

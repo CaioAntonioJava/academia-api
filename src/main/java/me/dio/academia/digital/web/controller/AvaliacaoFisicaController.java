@@ -42,5 +42,10 @@ public class AvaliacaoFisicaController {
         return ResponseEntity.ok().body(avaliacaoFisica);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        avaliacaoFisicaService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 
 }
