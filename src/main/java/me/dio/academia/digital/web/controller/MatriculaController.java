@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("ap1/v1/matriculas")
+@RequestMapping("api/v1/matriculas")
 @RequiredArgsConstructor
 public class MatriculaController {
 
@@ -26,7 +26,7 @@ public class MatriculaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Matricula> getById(@PathVariable Long id) {
-       Matricula matricula = matriculaService.getById(id);
+        Matricula matricula = matriculaService.getById(id);
         return ResponseEntity.ok().body(matricula);
     }
 
@@ -34,6 +34,12 @@ public class MatriculaController {
     public ResponseEntity<List<Matricula>> getAll() {
         List<Matricula> matriculaList = matriculaService.getAll();
         return ResponseEntity.ok().body(matriculaList);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        matriculaService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 

@@ -48,7 +48,6 @@ public class AlunoService {
         findById(id);
         try {
             alunoRepository.deleteById(id);
-
         } catch (Exception exception) {
             throw new RuntimeException("Há entidades relacionadas ao aluno");
         }

@@ -45,4 +45,14 @@ public class MatriculaService {
     public List<Matricula> getAll() {
         return matriculaRepository.findAll();
     }
+
+    @Transactional
+    public void delete(Long id) {
+        getById(id);
+        try {
+            matriculaRepository.deleteById(id);
+        } catch (Exception exception) {
+            throw new RuntimeException("Não é possível excluir pois há entidades relacionadas");
+        }
+    }
 }
