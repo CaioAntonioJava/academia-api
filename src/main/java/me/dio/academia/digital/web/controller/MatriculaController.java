@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("ap1/v1/matriculas")
 @RequiredArgsConstructor
@@ -26,6 +28,12 @@ public class MatriculaController {
     public ResponseEntity<Matricula> getById(@PathVariable Long id) {
        Matricula matricula = matriculaService.getById(id);
         return ResponseEntity.ok().body(matricula);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Matricula>> getAll() {
+        List<Matricula> matriculaList = matriculaService.getAll();
+        return ResponseEntity.ok().body(matriculaList);
     }
 
 

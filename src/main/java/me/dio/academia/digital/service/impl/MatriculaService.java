@@ -5,9 +5,11 @@ import me.dio.academia.digital.entity.Aluno;
 import me.dio.academia.digital.entity.Matricula;
 import me.dio.academia.digital.repository.AlunoRepository;
 import me.dio.academia.digital.repository.MatriculaRepository;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -31,10 +33,16 @@ public class MatriculaService {
     }
 
 
+    @ReadOnlyProperty
     public Matricula getById(Long id) {
         Matricula matricula = matriculaRepository.findById(id).orElseThrow(
                 () -> new RuntimeException("Matricula não encontrada")
         );
         return matricula;
+    }
+
+    @ReadOnlyProperty
+    public List<Matricula> getAll() {
+        return matriculaRepository.findAll();
     }
 }
