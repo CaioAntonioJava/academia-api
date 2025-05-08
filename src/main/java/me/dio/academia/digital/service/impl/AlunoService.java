@@ -2,6 +2,7 @@ package me.dio.academia.digital.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import me.dio.academia.digital.entity.Aluno;
+import me.dio.academia.digital.entity.AvaliacaoFisica;
 import me.dio.academia.digital.repository.AlunoRepository;
 import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,13 @@ public class AlunoService {
     @ReadOnlyProperty
     public List<Aluno> findAll() {
         return alunoRepository.findAll();
+    }
+
+    @ReadOnlyProperty
+    public List<AvaliacaoFisica> getAllAvaliacaoFisicaById(Long id) {
+        Aluno aluno = findById(id);
+        return aluno.getAvaliacoes();
+
     }
 
     @Transactional

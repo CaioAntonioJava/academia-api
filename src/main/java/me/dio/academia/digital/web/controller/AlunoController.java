@@ -3,7 +3,9 @@ package me.dio.academia.digital.web.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import me.dio.academia.digital.entity.Aluno;
+import me.dio.academia.digital.entity.AvaliacaoFisica;
 import me.dio.academia.digital.service.impl.AlunoService;
+import me.dio.academia.digital.service.impl.AvaliacaoFisicaService;
 import me.dio.academia.digital.web.dto.AlunoForm;
 import me.dio.academia.digital.web.dto.AlunoUpdateForm;
 import me.dio.academia.digital.web.dto.mapper.AlunoMapper;
@@ -37,6 +39,12 @@ public class AlunoController {
     public ResponseEntity<List<Aluno>> findAll() {
         List<Aluno> alunoList = alunoService.findAll();
         return ResponseEntity.ok().body(alunoList);
+    }
+
+    @GetMapping("/avaliacoes/{id}")
+    public ResponseEntity<List<AvaliacaoFisica>> getAllAvaliacoesAluno(@PathVariable Long id) {
+        List<AvaliacaoFisica> avaliacaoFisicaList = alunoService.getAllAvaliacaoFisicaById(id);
+        return ResponseEntity.ok().body(avaliacaoFisicaList);
     }
 
     @PatchMapping("/{id}")
