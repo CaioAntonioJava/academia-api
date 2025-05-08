@@ -25,6 +25,6 @@ public class Matricula {
   @JoinColumn(name = "aluno_id")
   private Aluno aluno;
 
-  @Column(name = "data_matricula", nullable = false)
+  @Column(name = "data_matricula")
   private LocalDateTime dataDaMatricula = LocalDateTime.now();
 }

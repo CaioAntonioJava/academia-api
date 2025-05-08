@@ -1,9 +1,32 @@
 package me.dio.academia.digital.web.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import me.dio.academia.digital.entity.Matricula;
+import me.dio.academia.digital.service.impl.MatriculaService;
+import me.dio.academia.digital.web.dto.MatriculaForm;
+import me.dio.academia.digital.web.dto.mapper.MatriculaMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/matriculas")
+@RequestMapping("ap1/v1/matriculas")
+@RequiredArgsConstructor
 public class MatriculaController {
+
+    private final MatriculaService matriculaService;
+
+    @PostMapping
+    public ResponseEntity<Matricula> create(@RequestBody MatriculaForm matriculaForm) {
+        Matricula matricula = matriculaService.create(MatriculaMapper.toMatricula(matriculaForm));
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Matricula> getById(@PathVariable Long id) {
+       Matricula matricula = matriculaService.getById(id);
+        return ResponseEntity.ok().body(matricula);
+    }
+
+
 }
