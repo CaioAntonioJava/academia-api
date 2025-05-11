@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,7 +19,7 @@ public class AvaliacaoFisicaController {
     private final AvaliacaoFisicaService avaliacaoFisicaService;
 
     @PostMapping
-    public ResponseEntity<AvaliacaoFisica> create(@RequestBody AvaliacaoFisicaForm avaliacaoFisicaForm) {
+    public ResponseEntity<AvaliacaoFisica> create(@Valid  @RequestBody AvaliacaoFisicaForm avaliacaoFisicaForm) {
        AvaliacaoFisica avaliacaoFisica =  avaliacaoFisicaService.create(avaliacaoFisicaForm);
         return ResponseEntity.status(HttpStatus.CREATED).body(avaliacaoFisica);
     }
@@ -36,7 +37,7 @@ public class AvaliacaoFisicaController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<AvaliacaoFisica> update(@PathVariable Long id, @RequestBody AvaliacaoFisicaUpdateForm avaliacaoFisicaUpdateForm) {
+    public ResponseEntity<AvaliacaoFisica> update(@PathVariable Long id, @Valid  @RequestBody AvaliacaoFisicaUpdateForm avaliacaoFisicaUpdateForm) {
         AvaliacaoFisica avaliacaoFisica = avaliacaoFisicaService.update(
                 id, avaliacaoFisicaUpdateForm.getPeso(), avaliacaoFisicaUpdateForm.getAltura());
         return ResponseEntity.ok().body(avaliacaoFisica);

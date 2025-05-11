@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class AlunoController {
     private final AlunoService alunoService;
 
     @PostMapping
-    public ResponseEntity<Aluno> create(@RequestBody AlunoForm alunoForm) {
+    public ResponseEntity<Aluno> create(@Valid @RequestBody AlunoForm alunoForm) {
         Aluno newAluno = alunoService.create(AlunoMapper.toAluno(alunoForm));
         return ResponseEntity.status(HttpStatus.CREATED).body(newAluno);
 
@@ -48,7 +49,7 @@ public class AlunoController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Aluno> updateAluno(@PathVariable Long id, @RequestBody AlunoUpdateForm alunoUpdateForm) {
+    public ResponseEntity<Aluno> updateAluno(@PathVariable Long id, @Valid @RequestBody AlunoUpdateForm alunoUpdateForm) {
         Aluno updateObj = alunoService.updateDadosAluno
                 (id, alunoUpdateForm.getNome(), alunoUpdateForm.getBairro(), alunoUpdateForm.getDataDeNascimento());
         return ResponseEntity.ok().body(updateObj);
